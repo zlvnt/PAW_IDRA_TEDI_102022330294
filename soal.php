@@ -2,7 +2,7 @@
 // Inisialisasi variabel untuk menyimpan nilai input dan error
 $nama = $email = $nim = "";
 $namaErr = $emailErr = $nimErr = "";
-$successMessage = "";
+$sukses = "";
 
 // **********************  1  **************************  
 // Tangkap nilai nama yang ada pada form HTML
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($namaErr) && empty($emailErr) && empty($nimErr)) {
-        $successMessage = "Berhasil! Data pendaftaran telah diterima.";
+        $sukses = "Berhasil! Data pendaftaran telah diterima.";
     }
 }
 ?>
