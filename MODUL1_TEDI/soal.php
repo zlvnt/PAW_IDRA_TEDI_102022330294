@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nama = $_POST["nama"];
     if (empty($nama)) {
         $namaErr = "Nama wajib diisi";
-    } elseif (!preg_match('/[a-zA-Z]+$/i',"nama")) {
+    } elseif (!preg_match('/^[a-zA-Z]+$/',$nama)) {
         $namaErr = "nama hanya boleh berisi huruf";
     }
 
