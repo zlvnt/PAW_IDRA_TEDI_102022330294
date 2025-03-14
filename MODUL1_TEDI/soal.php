@@ -1,6 +1,8 @@
 <?php
 // **********************  1  **************************  
 // Inisialisasi variabel untuk menyimpan nilai input dan error
+$nama = $email = $nim = $jurusan = $fakultas = "";
+$namaErr = $emailErr = $nimErr =  $jurusanErr = $fakultasErr = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // **********************  2  **************************  
@@ -8,7 +10,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // - Validasi agar nama tidak boleh kosong
     // - Validasi agar nama hanya berupa abjad (Hint : gunakan fungsi preg_match (atau fungsi lainnya))
     // silakan taruh kode kalian di bawah
-
+        // Validasi Nama
+    if (empty($nama)) {
+        $namaErr = "Nama wajib diisi";
+    } elseif (!preg_match("nama")) {
+        $namaErr = "nama hanya boleh berisi huruf";
+    } else {
+        $nama = $_POST["nama"];
+    }
 
     // **********************  3  **************************  
     // - Tangkap nilai email yang ada pada form HTML (Lihat Task 7)
@@ -16,26 +25,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // - Memeriksa apakah format email valid (Hint : gunakan fungsi filter_var)
     // silakan taruh kode kalian di bawah
  
-
+    if (empty($_POST["email"])) {
+        $emailErr = "Email wajib diisi";
+    } elseif (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+        $emailErr = "format Email tidak valid";
+    } else {
+        $email = $_POST["email"];
+    }
     // **********************  4  **************************  
     // - Tangkap nilai NIM yang ada pada form HTML (Lihat Task 7)
     // - Pastikan NIM terisi dan berformat angka
     // - silakan taruh kode kalian di bawah
-   
+    $nim = $_POST["nim"];
+    if (empty($nim)) {
+        $nimErr = "Nim wajib diisi";
+    } elseif (!ctype_digit($nim)) {
+        $nimErr = "NIM harus berupa angka";
+    }
 
     // **********************  5  **************************  
     // - Tangkap nilai jurusan yang ada pada form HTML (Lihat Task 7)
     // - Validasi agar jurusan tidak boleh kosong
     // - Validasi agar jurusan hanya berupa abjad (Hint : gunakan fungsi preg_match (atau fungsi lainnya))
     // silakan taruh kode kalian di bawah
- 
+    $jurusan = $_POST["jurusan"];
+    if (empty($jurusan)) {
+        $jurusanErr = "jurusan wajib diisi";
+    } elseif (!preg_match("jurusan")) {
+        $jurusanErr = "jurusan hanya boleh berisi huruf";
+    }
 
     // **********************  6  **************************  
     // - Tangkap nilai fakultas yang ada pada form HTML (Lihat Task 7)
     // - Validasi agar fakultas tidak boleh kosong
     // - Validasi agar fakultas hanya berupa abjad (Hint : gunakan fungsi preg_match (atau fungsi lainnya))
     // silakan taruh kode kalian di bawah
-   
+    $fakultas = $_POST["fakultas"];
+    if (empty($fakultas)) {
+        $fakultasErr = "fakultas wajib diisi";
+    } elseif (!preg_match("fakultas")) {
+        $fakultasErr = "jurusan hanya boleh berisi huruf";
+    }
+
 }
 ?>
 
@@ -118,5 +149,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php } ?>
 </body>
 </html>
-
-
