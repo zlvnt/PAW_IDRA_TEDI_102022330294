@@ -11,12 +11,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // - Validasi agar nama hanya berupa abjad (Hint : gunakan fungsi preg_match (atau fungsi lainnya))
     // silakan taruh kode kalian di bawah
         // Validasi Nama
+    $nama = $_POST["nama"];
     if (empty($nama)) {
         $namaErr = "Nama wajib diisi";
-    } elseif (!preg_match("nama")) {
+    } elseif (!preg_match('/[a-zA-Z]+$/i',"nama")) {
         $namaErr = "nama hanya boleh berisi huruf";
-    } else {
-        $nama = $_POST["nama"];
     }
 
     // **********************  3  **************************  
@@ -24,13 +23,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // - Memeriksa apakah email kosong
     // - Memeriksa apakah format email valid (Hint : gunakan fungsi filter_var)
     // silakan taruh kode kalian di bawah
- 
-    if (empty($_POST["email"])) {
+    $email = $_POST["email"];
+    if (empty($email)) {
         $emailErr = "Email wajib diisi";
     } elseif (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
         $emailErr = "format Email tidak valid";
-    } else {
-        $email = $_POST["email"];
     }
     // **********************  4  **************************  
     // - Tangkap nilai NIM yang ada pada form HTML (Lihat Task 7)
@@ -51,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $jurusan = $_POST["jurusan"];
     if (empty($jurusan)) {
         $jurusanErr = "jurusan wajib diisi";
-    } elseif (!preg_match("jurusan")) {
+    } elseif (!preg_match("/^[a-zA-Z]+$/i", $jurusan)) {
         $jurusanErr = "jurusan hanya boleh berisi huruf";
     }
 
@@ -63,8 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fakultas = $_POST["fakultas"];
     if (empty($fakultas)) {
         $fakultasErr = "fakultas wajib diisi";
-    } elseif (!preg_match("fakultas")) {
-        $fakultasErr = "jurusan hanya boleh berisi huruf";
+    } elseif (!preg_match('/[a-zA-Z]+$/',$fakultas)) {
+        $fakultasErr = "fakultas hanya boleh berisi huruf";
     }
 
 }
@@ -101,31 +98,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <!-- Hint : value pada input form harus berisi variabel yang menyimpan data input -->
             <div class="form-group">
             <label for="nama">Nama</label>
-            <input type="text" id="nama" name="nama" >
+            <input type="text" id="nama" name="nama" value="<?php echo $nama; ?>">
             <span class="error"><?php echo $namaErr ? "* $namaErr" : ""; ?></span>
             </div>
 
             <div class="form-group">
             <label for="email">Email</label>
-            <input type="text" id="email" name="email" >
+            <input type="text" id="email" name="email" value="<?php echo $email; ?>">
             <span class="error"><?php echo $emailErr ? "* $emailErr" : ""; ?></span>
             </div>
 
             <div class="form-group">
             <label for="nim">NIM</label>
-            <input type="text" id="nim" name="nim" >
+            <input type="text" id="nim" name="nim" value="<?php echo $nim; ?>">
             <span class="error"><?php echo $nimErr ? "* $nimErr" : ""; ?></span>
             </div>
 
             <div class="form-group">
             <label for="jurusan">Jurusan</label>
-            <input type="text" id="jurusan" name="jurusan" >
+            <input type="text" id="jurusan" name="jurusan" value="<?php echo $jurusan; ?>">
             <span class="error"><?php echo $jurusanErr ? "* $jurusanErr" : ""; ?></span>
             </div>
 
             <div class="form-group">
             <label for="fakultas">Fakultas</label>
-            <input type="text" id="fakultas" name="fakultas" >
+            <input type="text" id="fakultas" name="fakultas" value="<?php echo $fakultas; ?>">
             <span class="error"><?php echo $fakultasErr ? "* $fakultasErr" : ""; ?></span>
             </div>
 
@@ -137,13 +134,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <!-- **********************  8  ************************** -->
     <!-- Panggil variabel yang berisi pesan error (Hint : gunakan if dan metode post) -->
-    <?php { ?>
-
+    <?php if ($_SERVER["REQUEST_METHOD"] == "POST" && !$namaErr && !$emailErr && !$nimErr && !$jurusanErr && !$fakulatasErr) { ?>
     <div class="container">
         <h3>Data Pendaftaran</h3>
         <div class="table-container">
     <!-- **********************  9  ************************** -->
     <!-- Tampilkan data pendaftaran dalam bentuk tabel yang baru saja diinput -->
+            <table>
+                <thead>
+                    <tr>
+                        <th width="20%">Nama</th>
+                        <th width="20%">Email</th>
+                        <th width="15%">Nim</th>
+                        <th width="15%">Jurusan</th>
+                        <th width="30%">Fakultas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><?php echo $nama; ?></td>
+                        <td><?php echo $email; ?></td>
+                        <td><?php echo $nim; ?></td>
+                        <td><?php echo $jurusan; ?></td>
+                        <td><?php echo $fakultas; ?></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
     <?php } ?>
