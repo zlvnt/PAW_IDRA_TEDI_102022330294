@@ -41,10 +41,15 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <th colspan="7" class="text-center">TIDAK ADA DATA DALAM KATALOG</th>
                     </tr>
                 <?php endif;?>
+                <?php $no = 1;?>
                 <?php foreach ($bukus as $buku) : ?>
                     <tr>
                         <!-- ==================2================== -->
                         <!-- Buatlah kolom untuk masing-masing variabel pada $buku -->
+                        <td><?= $no++; ?></td>
+                        <td><?= htmlspecialchars($buku['judul']); ?></td>
+                        <td><?= htmlspecialchars($buku['penulis']); ?></td>
+                        <td><?= htmlspecialchars($buku['tahun_terbit']); ?></td>
                         <td>
                             <a href="edit_buku.php?id=<?=$buku['id']?>" class="btn btn-primary">Edit</a>
                             <a href="delete.php?id=<?=$buku['id']?>" class="btn btn-danger" >Delete</a>
@@ -57,4 +62,3 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 </body>
 </html>
-

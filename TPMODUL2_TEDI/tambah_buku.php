@@ -20,20 +20,20 @@
                             <div class="form-floating mb-3">
                                 <!--  ==================1==================  -->
                                 <!--  Buatlah input untuk judul yang harus diisi; dengan label  -->
-                                <input type="string" class="form-control" name="" id="" required>
-                                <label for=""></label>
+                                <input type="string" class="form-control" name="judul" id="judul" required>
+                                <label for="judul">Judul Buku</label>
                             </div>
                             <div class="form-floating mb-3">
                                 <!--  ==================2==================  -->
                                 <!--  Buatlah input untuk penulis yang harus diisi; dengan label  -->
-                                <input type="string" class="form-control" name="" id="" required>
-                                <label for=""></label>
+                                <input type="string" class="form-control" name="penulis" id="penulis" required>
+                                <label for="penulis">penulis</label>
                             </div>
                             <div class="form-floating mb-3">
                                 <!--  ==================3==================  -->
                                 <!--  Buatlah input untuk tahun_terbit yang harus diisi; dengan label  -->
-                                <input type="string" class="form-control" name="tahun_terbit" id="" required>
-                                <label for=""></label>
+                                <input type="string" class="form-control" name="tahun_terbit" id="tahun_terbit" required>
+                                <label for="tahun_terbit">Tahun terbit</label>
                             </div>
 
                             <button type="submit" name="create" id="create" class="btn btn-primary mb-3 mt-3 w-100">Tambah</button>
