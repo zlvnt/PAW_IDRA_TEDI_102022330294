@@ -2,7 +2,7 @@
 include 'connect.php';
 
 // Cek Apakah ada data yang dikirim
-if (isset($_POST[''])) {
+if (isset($_POST['create'])) {
     $judul = $_POST["judul"];
     $penulis = $_POST["penulis"];
     $tahun_terbit = $_POST["tahun_terbit"];

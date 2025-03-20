@@ -2,11 +2,11 @@
 include('connect.php');
 
 // Cek Apakah ada data yang dikirim
-if (isset($_GET[' '])){
-    $id = $_GET[''];
+if (isset($_GET['id'])){
+    $id = $_GET['id'];
 
     // Definisikan query untuk menampilkan data
-
+    $query = "SELECT * FROM tb_buku WHERE id = $id";
     $data = mysqli_query($conn,$query);
     $buku = mysqli_fetch_assoc($data);
 

@@ -2,6 +2,7 @@
 include 'connect.php';
 
 // (1.) Cek Apakah ada data yang dikirim
+$search = isset($_GET['search']) ? $_GET['search'] : '';
 
     // (2.) Validasi Input jika search input kurang dari 3 karakter
     // Hint : Gunakan strlen()
@@ -9,14 +10,16 @@ include 'connect.php';
     // (3.) Validasi Input jika search input tidak alphanumeric
     // Hint : Gunakan preg_match()
 
-
 // (4.) Buat query untuk menampilkan data (Hint : gunakan query SELECT)
-
+$query = "SELECT * FROM tb_buku WHERE judul LIKE '%$search%'";
 
 // (5.) Jalankan query (Hint : gunakan mysqli_query())
-
-
+$data = mysqli_query($conn, $query);
 // (6.) Tampung hasil query ke dalam array (Hint : gunakan mysqli_fetch_assoc())
+$bukus = [];
+while ($buku = mysqli_fetch_assoc($data)) {
+    $bukus[] = $buku;
+}
 
 ?>
 
@@ -34,9 +37,9 @@ include 'connect.php';
     <div class="container mt-5">
         <h1>Katalog Buku</h1>
         <!-- (7.) Tambahkan Method  GET -->
-        <form action="katalog_buku.php" class="form-inline">
+        <form action="katalog_buku.php" method="GET" class="form-inline">
             <!-- (8.)Tambahkan Value $search -->
-            <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+            <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search" value="<?=$search ?>">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
         <table class="table table-bordered">
