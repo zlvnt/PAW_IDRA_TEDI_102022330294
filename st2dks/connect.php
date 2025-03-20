@@ -9,10 +9,10 @@ $username = "root";
 $pass = "";
 
 // database name
-$db = "db_modul2";
+$db = "st2dk";
 
 // port
-$port = 3306;
+$port = 3307;
 
 // connect to db
 $conn = mysqli_connect($host, $username, $pass, $db, $port);
